@@ -15,7 +15,7 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function countCats(arr) {
-  return arr.map(el => el.filter(el => el==='^^')).filter(el => el.length !== 0).join(',').split(',').length
+  return [].concat(...arr).filter(el => el==='^^').length
 }
 
 module.exports = {
