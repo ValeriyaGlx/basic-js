@@ -11,8 +11,13 @@ const { NotImplementedError } = require('../extensions/index.js');
  * getSeason(new Date(2020, 02, 31)) => 'spring'
  * 
  */
+
 function getSeason(data) {
-  if (isNaN(Math.abs(Date.parse(data)))) {
+  if(arguments.length===0){
+    return 'Unable to determine the time of year!'
+  }
+
+  if (isNaN(Math.abs(Date.parse(data))) || typeof data.valueOf() !== 'number') {
     throw new Error("Invalid date!");
   }
   const season = data.getMonth();
@@ -27,7 +32,7 @@ function getSeason(data) {
   const a = Object.values(obj).filter((el) => el.some((el) => el === season));
 
   return a.join(",").split(",")[0];
-}
+} 
 
 module.exports = {
   getSeason
