@@ -17,6 +17,12 @@ function getSeason(data) {
     return 'Unable to determine the time of year!'
   }
 
+  try {
+    data.getUTCDate();
+  } catch (TypeError) {
+    throw Error('Invalid date!');
+  }
+
   if (isNaN(Math.abs(Date.parse(data))) || typeof data.valueOf() !== 'number') {
     throw new Error("Invalid date!");
   }
